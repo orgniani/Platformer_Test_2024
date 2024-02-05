@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CharacterView : MonoBehaviour
 {
@@ -15,7 +12,7 @@ public class CharacterView : MonoBehaviour
     [SerializeField] private string animatorParameterState = "state";
     [SerializeField] private string animatorParameterDeath = "death";
 
-    private enum MovementState { idle, run, jump, fall}
+    private enum MovementState { idle, run, jump, fall }
 
     private void Reset()
     {
@@ -46,7 +43,7 @@ public class CharacterView : MonoBehaviour
         {
             state = MovementState.run;
 
-            if(dirX < 0f)
+            if (dirX < 0f)
             {
                 spriteRenderer.flipX = true;
             }
@@ -67,7 +64,7 @@ public class CharacterView : MonoBehaviour
             state = MovementState.jump;
         }
 
-        else if(characterJump.isFalling)
+        else if (characterJump.isFalling)
         {
             state = MovementState.fall;
         }
@@ -78,10 +75,5 @@ public class CharacterView : MonoBehaviour
     private void HandleDeath()
     {
         animator.SetTrigger(animatorParameterDeath);
-    }
-
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

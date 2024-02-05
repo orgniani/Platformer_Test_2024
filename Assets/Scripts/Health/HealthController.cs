@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public delegate void VoidDelegateType();
 
 public class HealthController : MonoBehaviour
 {
-    [SerializeField] private int HP = 1;
+    [SerializeField] public int HP = 1;
 
     public VoidDelegateType onHurt;
     public VoidDelegateType onDead;

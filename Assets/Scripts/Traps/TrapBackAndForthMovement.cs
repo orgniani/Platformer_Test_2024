@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class PlatformLateralMovement : MonoBehaviour
+public class TrapBackAndForthMovement : MonoBehaviour
 {
     [SerializeField] private CharacterMovement characterMovement;
 

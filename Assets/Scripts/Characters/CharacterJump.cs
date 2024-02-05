@@ -1,5 +1,4 @@
 using UnityEngine;
-using Color = UnityEngine.Color;
 
 public class CharacterJump : MonoBehaviour
 {
@@ -42,7 +41,7 @@ public class CharacterJump : MonoBehaviour
 
         if (shouldJump && IsGrounded())
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // alternativamente --> rb.AddForce(new Vector2(0, jumpForce));
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             shouldJump = false;
         }
     }

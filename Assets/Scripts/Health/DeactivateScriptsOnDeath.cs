@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeactivateScriptsOnDeath : MonoBehaviour
@@ -7,6 +5,7 @@ public class DeactivateScriptsOnDeath : MonoBehaviour
     [SerializeField] private HealthController HP;
     [SerializeField] private Collider2D col;
     [SerializeField] private CharacterMovement characterMovement;
+    [SerializeField] private Rigidbody2D rigidBody;
 
     private void OnEnable()
     {
@@ -25,5 +24,8 @@ public class DeactivateScriptsOnDeath : MonoBehaviour
 
         if (characterMovement != null)
             characterMovement.enabled = false;
+
+        if (rigidBody != null)
+            rigidBody.bodyType = RigidbodyType2D.Static;
     }
 }
