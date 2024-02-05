@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlatformStickToPlayer : MonoBehaviour
 {
     [SerializeField] private string playerName = "Player";
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == playerName)
         {
@@ -13,7 +14,7 @@ public class PlatformStickToPlayer : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == playerName)
         {

@@ -7,7 +7,6 @@ public class CharacterJump : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     private bool shouldJump = false;
-    private bool canJump = true;
 
     public bool isJumping = false;
     public bool isFalling = false;
@@ -43,16 +42,13 @@ public class CharacterJump : MonoBehaviour
 
         if (shouldJump && IsGrounded())
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            canJump = false;
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // alternativamente --> rb.AddForce(new Vector2(0, jumpForce));
             shouldJump = false;
         }
     }
 
     private bool IsGrounded()
     {
-        //checks if you are touching the top of the ground or not (ONLY THE TOP OF IT)
         return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, ground);
     }
-
 }
