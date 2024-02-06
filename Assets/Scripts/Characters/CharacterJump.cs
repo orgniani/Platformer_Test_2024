@@ -13,6 +13,8 @@ public class CharacterJump : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask ground;
 
+    public VoidDelegateType onJump;
+
     private void OnEnable()
     {
         if (!rb)
@@ -43,6 +45,9 @@ public class CharacterJump : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             shouldJump = false;
+
+            if (onJump != null)
+                onJump();
         }
     }
 

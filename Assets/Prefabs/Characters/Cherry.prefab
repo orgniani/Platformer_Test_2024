@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8567029579155613291}
   - component: {fileID: 4170357762030565692}
   - component: {fileID: 6308576677687104372}
-  - component: {fileID: 6787359508736270176}
   m_Layer: 0
   m_Name: Cherry
   m_TagString: Fruit
@@ -107,19 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6787359508736270176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271599958672613108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f89c609b8b28d244bc619cdcfe7574f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTag: Player
 --- !u!1 &1346380859541630544
 GameObject:
   m_ObjectHideFlags: 0

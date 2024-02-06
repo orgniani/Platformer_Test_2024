@@ -6,7 +6,6 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] public int HP = 1;
 
-    public VoidDelegateType onHurt;
     public VoidDelegateType onDead;
 
     public void TakeDamage(int damage)
