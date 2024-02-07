@@ -9,13 +9,13 @@ public class TrapBackAndForthMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 targetPoint = waypoints[currentWaypointIndex].transform.position;
-
         if (waypoints == null)
             Debug.LogError($"{name}: Target is null!");
 
         else
         {
+            Vector2 targetPoint = waypoints[currentWaypointIndex].transform.position;
+
             float targetDistance = Vector2.Distance(transform.position, targetPoint);
 
             if (targetDistance < .1f)
