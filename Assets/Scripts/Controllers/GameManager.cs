@@ -34,11 +34,13 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitToActivateInputReader);
 
-        inputReader.SetActive(true);
+        if(inputReader)
+            inputReader.SetActive(true);
     }
 
     public void DeactivateInputReader()
     {
+                if(inputReader)
         inputReader.SetActive(false);
     }
 

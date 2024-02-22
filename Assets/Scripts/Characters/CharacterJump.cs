@@ -14,14 +14,11 @@ public class CharacterJump : MonoBehaviour
     [SerializeField] private LayerMask ground;
     [SerializeField] private LayerMask wall;
 
-    public VoidDelegateType onJump;
+    [SerializeField] private int maxJumps = 2;
+    private int jumpCount = 0;
 
-    private bool isSliding;
-    [SerializeField] private float wallSlidingSpeed;
-
-    [SerializeField] private float wallJumpDuration;
-    [SerializeField] private float wallJumpForce;
-    private bool wallJumping;
+    public VoidDelegateType onJump; // This is for the audio only
+    public VoidDelegateType onDoubleJump; // This is for animation only
 
     private void OnEnable()
     {
@@ -49,66 +46,42 @@ public class CharacterJump : MonoBehaviour
         isJumping = rb.velocity.y > .1f;
         isFalling = rb.velocity.y < -.1f;
 
+        if(IsGrounded())
+        {
+            jumpCount = 0;
+        }
+
         if (shouldJump)
         {
             JumpingAction();
-        }
-
-        if(IsOnWall() && !IsGrounded() && !shouldJump)
-        {
-            isSliding = true;
-        }
-
-        else
-        {
-            isSliding = false;
-        }
-
-        if(isSliding)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-        }
-
-        if(wallJumping)
-        {
-            rb.AddForce(Vector2.up * wallJumpForce, ForceMode2D.Impulse);
         }
     }
 
     private void JumpingAction()
     {
-        if(IsGrounded())
+        if(IsGrounded() || jumpCount < maxJumps)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+            jumpCount++;
 
-        else if(isSliding)
-        {
-            wallJumping = true;
-            Invoke("StopWallJump", wallJumpDuration);
+            if (onJump != null)
+                onJump();
 
+            if (jumpCount == maxJumps)
+            {
+                if (onDoubleJump != null)
+                    onDoubleJump();
+            }
         }
 
         shouldJump = false;
 
-        if (onJump != null)
-            onJump();
-    }
-
-    private void StopWallJump()
-    {
-        wallJumping = false;
     }
 
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, ground);
-        return raycastHit.collider != null;
-    }
-
-    private bool IsOnWall()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, new Vector2(transform.localScale.x, 0), .1f, wall);
         return raycastHit.collider != null;
     }
 

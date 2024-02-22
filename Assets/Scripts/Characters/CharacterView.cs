@@ -11,6 +11,7 @@ public class CharacterView : MonoBehaviour
 
     [SerializeField] private string animatorParameterState = "state";
     [SerializeField] private string animatorParameterDeath = "death";
+    [SerializeField] private string animatorParameterDoubleJump = "doubleJump";
 
     private enum MovementState { idle, run, jump, fall }
 
@@ -23,11 +24,13 @@ public class CharacterView : MonoBehaviour
     private void OnEnable()
     {
         healthController.onDead += HandleDeath;
+        characterJump.onDoubleJump += HandleDoubleJump;
     }
 
     private void OnDisable()
     {
         healthController.onDead -= HandleDeath;
+        characterJump.onDoubleJump -= HandleDoubleJump;
     }
 
     private void Update()
@@ -70,6 +73,11 @@ public class CharacterView : MonoBehaviour
         }
 
         animator.SetInteger(animatorParameterState, (int)state);
+    }
+
+    private void HandleDoubleJump()
+    {
+        animator.SetTrigger(animatorParameterDoubleJump);
     }
 
     private void HandleDeath()
