@@ -68,7 +68,7 @@ public class CharacterJump : MonoBehaviour
             if (onJump != null)
                 onJump();
 
-            if (jumpCount == maxJumps)
+            if (jumpCount == 2)
             {
                 if (onDoubleJump != null)
                     onDoubleJump();

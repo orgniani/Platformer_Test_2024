@@ -10,9 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private HealthController playerHC;
     [SerializeField] private float waitToRestart;
 
-    [SerializeField] private GameObject inputReader;
-    [SerializeField] private float waitToActivateInputReader;
-
     [SerializeField] private float waitToNextLevel = 2f;
 
     private void OnEnable()
@@ -23,25 +20,6 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         playerHC.onDead -= HandleDeath;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(ActivateInputReader());
-    }
-
-    private IEnumerator ActivateInputReader()
-    {
-        yield return new WaitForSeconds(waitToActivateInputReader);
-
-        if(inputReader)
-            inputReader.SetActive(true);
-    }
-
-    public void DeactivateInputReader()
-    {
-                if(inputReader)
-        inputReader.SetActive(false);
     }
 
     private void LoadScene(int sceneBuildIndex)

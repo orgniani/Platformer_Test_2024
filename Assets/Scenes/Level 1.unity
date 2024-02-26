@@ -1001,6 +1001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 170674207}
   - component: {fileID: 170674206}
+  - component: {fileID: 170674208}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1020,12 +1021,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac9b4a7c0a6494428bc1c3b5c4071d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 0
-  nextLevelBuildIndex: 1
+  currentLevel: 1
+  nextLevelBuildIndex: 2
   playerHC: {fileID: 1742732595}
   waitToRestart: 1
-  inputReader: {fileID: 2388743}
-  waitToActivateInputReader: 0.8
   waitToNextLevel: 2
 --- !u!4 &170674207
 Transform:
@@ -1042,6 +1041,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &170674208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170674205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdcbd8a7adde16545853ba02236b3fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 2388743}
+  waitToActivateInputReader: 0.8
 --- !u!4 &190779788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 844994117484874619, guid: 587f4262cf7e75446a2a5c77a62fd209, type: 3}
@@ -1194,6 +1207,7 @@ MonoBehaviour:
   winLevelSoundEffect: {fileID: 207225684}
   tagToSearch: Player
   gameManager: {fileID: 170674206}
+  inputDeactivator: {fileID: 170674208}
   playerCM: {fileID: 1742732589}
   waypoint: {fileID: 1045365851}
 --- !u!61 &207225686
@@ -1228,7 +1242,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.53834724, y: -0.57108474}
+  m_Offset: {x: -0.53834724, y: 4.1985145}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1239,7 +1253,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12700272, y: 2.855116}
+  m_Size: {x: 0.12700272, y: 12.394311}
   m_EdgeRadius: 0
 --- !u!1 &233337462
 GameObject:
@@ -5193,6 +5207,7 @@ MonoBehaviour:
   healthController: {fileID: 1742732595}
   animatorParameterState: state
   animatorParameterDeath: death
+  animatorParameterDoubleJump: doubleJump
 --- !u!1001 &1448229163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5469,6 +5484,10 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  wall:
+    serializedVersion: 2
+    m_Bits: 0
+  maxJumps: 1
 --- !u!114 &1742732595
 MonoBehaviour:
   m_ObjectHideFlags: 0

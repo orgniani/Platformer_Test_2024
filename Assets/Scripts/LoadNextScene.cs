@@ -10,6 +10,7 @@ public class LoadNextScene : MonoBehaviour
 
     [SerializeField] private string tagToSearch = "Player";
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private InputDeactivator inputDeactivator;
 
     [SerializeField] private CharacterMovement playerCM;
     [SerializeField] private GameObject waypoint;
@@ -21,7 +22,7 @@ public class LoadNextScene : MonoBehaviour
     {
         if (col.gameObject.name == tagToSearch)
         {
-            gameManager.DeactivateInputReader();
+            inputDeactivator.DeactivateInputReader();
             winLevelSoundEffect.Play();
 
             shouldMove = true;
