@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int currentLevel = 0;
     [SerializeField] private int nextLevelBuildIndex = 1;
+    [SerializeField] private int mainMenuIndex = 0;
 
     [SerializeField] private HealthController playerHC;
     [SerializeField] private float waitToRestart;
@@ -32,6 +33,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(WaitToNextLevel());
     }
 
+    public void RestartLevel()
+    {
+        LoadScene(currentLevel);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        LoadScene(mainMenuIndex);
+    }
+
     private void HandleDeath()
     {
         StartCoroutine(RestartLevelOnDeath());
@@ -40,8 +51,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartLevelOnDeath()
     {
         yield return new WaitForSeconds(waitToRestart);
-
-        LoadScene(currentLevel);
+        RestartLevel();
     }
 
     private IEnumerator WaitToNextLevel()
