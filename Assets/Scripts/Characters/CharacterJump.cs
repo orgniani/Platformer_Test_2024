@@ -20,6 +20,9 @@ public class CharacterJump : MonoBehaviour
     public VoidDelegateType onJump; // This is for the audio only
     public VoidDelegateType onDoubleJump; // This is for animation only
 
+    [SerializeField] private ParticleSystem runningDust;
+    [SerializeField] private CharacterMovement characterMovement;
+
     private void OnEnable()
     {
         if (!rb)
@@ -46,9 +49,17 @@ public class CharacterJump : MonoBehaviour
         isJumping = rb.velocity.y > .1f;
         isFalling = rb.velocity.y < -.1f;
 
-        if(IsGrounded())
+        Vector2 direction = characterMovement.direction;
+        bool isMoving = direction != Vector2.zero;
+
+        if (IsGrounded())
         {
             jumpCount = 0;
+
+            if(isMoving)
+            {
+                runningDust.Play();
+            }
         }
 
         if (shouldJump)
@@ -79,7 +90,7 @@ public class CharacterJump : MonoBehaviour
 
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, ground);
         return raycastHit.collider != null;
