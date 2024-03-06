@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 4f;
+    [SerializeField] public float speed = 4f;
 
     public Vector2 direction;
     public Vector2 lastDirection;
+
+    public Vector2 currentPosition;
 
     private void Start()
     {
@@ -15,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         transform.position = transform.position + speed * Time.deltaTime * new Vector3(direction.x, direction.y);
+        currentPosition = transform.position;
     }
 
     public void SetDirection(Vector2 direction)
