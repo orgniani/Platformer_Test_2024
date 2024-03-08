@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4684396489922035071}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5512548203315500688}
   - component: {fileID: 7834773709011108687}
   - component: {fileID: 5003015511099913266}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Audio_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 6087025766544712218}
   - component: {fileID: 5163369905264094021}
   - component: {fileID: 7565691137049681910}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DustPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5309,7 +5309,7 @@ GameObject:
   - component: {fileID: 6957454447763677189}
   - component: {fileID: 5337068838874527456}
   - component: {fileID: 8417337894769449184}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5421,9 +5421,11 @@ MonoBehaviour:
   characterMovement: {fileID: 917920855420692289}
   characterJump: {fileID: 2102361140687237618}
   healthController: {fileID: 8072451051925575128}
+  attackerEnemy: {fileID: 0}
   animatorParameterState: state
   animatorParameterDeath: death
   animatorParameterDoubleJump: doubleJump
+  animatorParameterAttack: attack
 --- !u!1 &8902531837988101325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5440,7 +5442,8 @@ GameObject:
   - component: {fileID: 8072451051925575128}
   - component: {fileID: 4443536673635425193}
   - component: {fileID: 1901000879398686459}
-  m_Layer: 0
+  - component: {fileID: 1406290112497299079}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5608,7 +5611,7 @@ MonoBehaviour:
   HP: {fileID: 8072451051925575128}
   col: {fileID: 4623307276648720233}
   characterMovement: {fileID: 917920855420692289}
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: 1676020112159459832}
 --- !u!114 &1901000879398686459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5622,3 +5625,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitTag: Fruit
+--- !u!114 &1406290112497299079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8902531837988101325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1a6c7fd9566234394f0ba198139a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  jump: {fileID: 2102361140687237618}
